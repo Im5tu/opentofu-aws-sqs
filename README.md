@@ -16,7 +16,7 @@ OpenTofu module for creating AWS SQS queues with optional dead-letter queue supp
 
 ```hcl
 module "my_queue" {
-  source = "git::https://github.com/im5tu/opentofu-aws-sqs.git?ref=main"
+  source = "git::https://github.com/im5tu/opentofu-aws-sqs.git?ref=ce6739558c2324144583524879532e603c044dea"
 
   name = "my-application-queue"
 }
@@ -26,7 +26,7 @@ module "my_queue" {
 
 ```hcl
 module "fifo_queue" {
-  source = "git::https://github.com/im5tu/opentofu-aws-sqs.git?ref=main"
+  source = "git::https://github.com/im5tu/opentofu-aws-sqs.git?ref=ce6739558c2324144583524879532e603c044dea"
 
   name                        = "my-ordered-queue"
   fifo_queue                  = true
@@ -39,7 +39,7 @@ module "fifo_queue" {
 
 ```hcl
 module "encrypted_queue" {
-  source = "git::https://github.com/im5tu/opentofu-aws-sqs.git?ref=main"
+  source = "git::https://github.com/im5tu/opentofu-aws-sqs.git?ref=ce6739558c2324144583524879532e603c044dea"
 
   name        = "secure-queue"
   kms_key_arn = aws_kms_key.sqs.arn
