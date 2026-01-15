@@ -43,3 +43,15 @@ variable "high_throughput_fifo" {
   type        = bool
   default     = false
 }
+
+variable "policy" {
+  description = "JSON policy document to attach to the queue. If null, no policy is attached."
+  type        = string
+  default     = null
+}
+
+variable "tags" {
+  description = "Tags to apply to the queue and DLQ"
+  type        = map(string)
+  default     = {}
+}

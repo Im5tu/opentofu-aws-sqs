@@ -12,6 +12,7 @@ resource "aws_sqs_queue" "sqs" {
     deadLetterTargetArn = aws_sqs_queue.dlq[0].arn
     maxReceiveCount     = 10
   }) : null
+  tags = var.tags
 }
 
 resource "aws_sqs_queue" "dlq" {
@@ -23,6 +24,7 @@ resource "aws_sqs_queue" "dlq" {
   receive_wait_time_seconds   = 20
   message_retention_seconds   = 1209600
   kms_master_key_id           = var.kms_key_arn
+  tags                        = var.tags
 }
 
 resource "aws_sqs_queue_redrive_allow_policy" "dlq" {
@@ -33,4 +35,10 @@ resource "aws_sqs_queue_redrive_allow_policy" "dlq" {
     redrivePermission = "byQueue"
     sourceQueueArns   = [aws_sqs_queue.sqs.arn]
   })
+}
+
+resource "aws_sqs_queue_policy" "sqs" {
+  count     = var.policy != null ? 1 : 0
+  queue_url = aws_sqs_queue.sqs.id
+  policy    = var.policy
 }
